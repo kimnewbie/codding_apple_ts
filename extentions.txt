@@ -1,2 +1,4 @@
+$ tsc -w
+
 typescript
   $ npm install -g typescript
