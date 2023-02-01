@@ -3,6 +3,9 @@
     "target": "es5",
     "module": "commonjs",
     "noImplicitAny": true,
-    "strictNullChecks": true
-  }
+    "strictNullChecks": true,
+    "sourceMap": true
+  },
+  "include": ["index.ts"],
+  "exclude": ["node_modules"]
 }

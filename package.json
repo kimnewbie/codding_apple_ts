@@ -1,0 +1,23 @@
+{
+  "name": "codding_apple_ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimnewbie/codding_apple_ts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimnewbie/codding_apple_ts/issues"
+  },
+  "homepage": "https://github.com/kimnewbie/codding_apple_ts#readme",
+  "keywords": [],
+  "description": ""
+}

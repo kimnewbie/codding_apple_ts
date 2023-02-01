@@ -1,23 +1,63 @@
-var 회원들 = [1, "2", 3];
-var 오브젝트 = { a: 123 };
-var 이름;
-이름 = 123;
-이름 = "김";
-이름 = {};
-// 이름 - 1; // --error
-var 나이;
-// 나이 + 1; // --error string + 1(허용) number + 1(허용) string | number + 1 (안돼)
+function 함수(x) {
+    return x * 2;
+}
+함수(2);
+/* void 함수 */
+function 함수2(x) {
+    x * 2;
+}
+함수2(2);
+/* 함수 호출시 파라미터 없어도 가능토록 */
+function 함수3(x) { }
+함수3();
+function 함수4(x) { }
+함수4(2);
+함수4("1234");
+// function 함수5(x: number | string): void {
+//   if (typeof x) { // 조건문
+//     console.log(x + 3); // --error 왜인지 모르게뜸
+//   }
+// }
 /**
  * 숙제
  */
-var user = "kim";
-var age = undefined;
-var married = false;
-var 철수 = [user, age, married];
-var 학교 = {
-    score: [100, 97, 84],
-    teacher: "Phil",
-    friend: "John",
-};
-학교.score[4] = false;
-학교.friend = ["Lee", 학교.teacher];
+function 이름(name) {
+    if (name === undefined) {
+        return console.log("이름이 없습니다");
+    }
+    else {
+        return console.log("안녕하세요 " + name);
+    }
+}
+// function sayHi(x? :string ){
+//   if (x) {
+//     console.log('안녕하세요 ' + x)
+//   } else {
+//     console.log('왜입력안함')
+//   }
+// }
+이름("홍길동");
+이름();
+function 자릿수세기(x) {
+    return console.log(x.toString().length);
+}
+자릿수세기("진짜왜그랭");
+function 결혼가능하냐(월소득, 집보유여부, 매력점수) {
+    var 총합 = 0;
+    총합 += 월소득;
+    if (집보유여부) {
+        총합 += 500;
+    }
+    if (매력점수 === "상") {
+        총합 += 100;
+    }
+    if (총합 >= 600) {
+        return console.log("결혼가능");
+    }
+    else {
+        console.log("결혼못해");
+    }
+}
+결혼가능하냐(700, false, "중");
+결혼가능하냐(100, false, "상");
+//# sourceMappingURL=index.js.map
