@@ -1,80 +1,28 @@
-function 함수(x: number): number {
-  return x * 2;
-}
-
-함수(2);
-
-/* void 함수 */
-function 함수2(x: number): void {
-  x * 2;
-}
-
-함수2(2);
-
-/* 함수 호출시 파라미터 없어도 가능토록 */
-function 함수3(x?: number): void {}
-
-함수3();
-
-function 함수4(x: number | string): void {}
-
-함수4(2);
-함수4("1234");
-
-// function 함수5(x: number | string): void {
-//   if (typeof x) { // 조건문
-//     console.log(x + 3); // --error 왜인지 모르게뜸
-//   }
-// }
-
-/**
- * 숙제
- */
-function 이름(name?: string) {
-  if (name === undefined) {
-    return console.log("이름이 없습니다");
+function 내함수(x: number | string) {
+  // return x + 1; // --error x가 애매
+  if (typeof x === "number") {
+    return x + 1;
   } else {
-    return console.log("안녕하세요 " + name);
+    return x + "1";
   }
 }
 
-// function sayHi(x? :string ){
-//   if (x) {
-//     console.log('안녕하세요 ' + x)
-//   } else {
-//     console.log('왜입력안함')
-//   }
-// }
+내함수(123);
 
-이름("홍길동");
-이름();
+function 내함수2(x: number | string) {
+  let array: number[] = [];
 
-function 자릿수세기(x: string | number) {
-  return console.log(x.toString().length);
+  // 방법 1 type 체크
+  // if (typeof x === "number") {
+  //   array[0] = x;
+  // }
+
+  // 방법2 assertion 문법으로 타입 덮어쓰기
+  // (1) Narrowing 할 때 사용 (타입이 여러 개인 경우)
+  // (2) 무슨 타입이 들어올지 100% 확실할 때 사용
+  // 고로 남이 짠 코드 수정하거나 왜 타입에러가 나는지 모르겠을 때, 비상용으로 사용
+  array[0] = x as number;
+  array[0] = <number>x;
 }
 
-자릿수세기("진짜왜그랭");
-
-function 결혼가능하냐(
-  월소득: number,
-  집보유여부: boolean,
-  매력점수: string
-): string | void {
-  let 총합: number = 0;
-  총합 += 월소득;
-  if (집보유여부) {
-    총합 += 500;
-  }
-  if (매력점수 === "상") {
-    총합 += 100;
-  }
-
-  if (총합 >= 600) {
-    return console.log("결혼가능");
-  } else {
-    console.log("결혼못해");
-  }
-}
-
-결혼가능하냐(700, false, "중");
-결혼가능하냐(100, false, "상");
+내함수2(123);
