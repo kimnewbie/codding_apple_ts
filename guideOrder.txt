@@ -1,0 +1,5 @@
+- nodejs 최신 버전 설치
+- $npm install -g typescript
+- tsconfig.json 만들고
+- 어쩌구.ts 파일에 코딩 시작
+- 터미널에 tsc-w 해둔 채로

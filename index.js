@@ -1,6 +1,5 @@
-var User = /** @class */ (function () {
-    function User(name) {
-        this.name = name;
-    }
-    return User;
-}());
+var project = {
+    member: ["kim", "park"],
+    days: 30,
+    started: true,
+};

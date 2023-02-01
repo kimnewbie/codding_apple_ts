@@ -1,6 +1,9 @@
-class User {
-  name: string;
-  constructor(name: string) {
-    this.name = name;
-  }
-}
+let project: {
+  member: string[];
+  days: number;
+  started: boolean;
+} = {
+  member: ["kim", "park"],
+  days: 30,
+  started: true,
+};
