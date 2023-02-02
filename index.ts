@@ -1,28 +1,73 @@
-function 내함수(x: number | string) {
-  // return x + 1; // --error x가 애매
-  if (typeof x === "number") {
-    return x + 1;
-  } else {
-    return x + "1";
-  }
-}
+type Animal = string | number | undefined; // (union type => type alias/타입 변수)
 
-내함수(123);
+let 동물: Animal = "kim";
 
-function 내함수2(x: number | string) {
-  let array: number[] = [];
+type List = { name: string; age: number };
+let 리스트: List = { name: "kim", age: 20 };
 
-  // 방법 1 type 체크
-  // if (typeof x === "number") {
-  //   array[0] = x;
-  // }
+// 작명 tip : 첫 시작은 대문자 혹은 Type을 변수명 뒤에 붙인다
 
-  // 방법2 assertion 문법으로 타입 덮어쓰기
-  // (1) Narrowing 할 때 사용 (타입이 여러 개인 경우)
-  // (2) 무슨 타입이 들어올지 100% 확실할 때 사용
-  // 고로 남이 짠 코드 수정하거나 왜 타입에러가 나는지 모르겠을 때, 비상용으로 사용
-  array[0] = x as number;
-  array[0] = <number>x;
-}
+const 출생지역 = "seoul";
+// 출생지역 = 'busan'; // const 변수는 바뀌지 않음
 
-내함수2(123);
+const 지역 = { region: "seoul" }; // object는 수정 가능
+지역.region = "busan";
+
+// typescript에서 lock 가능(but 이렇게 해도 js에서는 실행 가능)
+type Girlfriend = {
+  readonly name: string;
+};
+const 여친: Girlfriend = {
+  name: "엠버",
+};
+// 여친.name = "유진"; // readonly를 사용하면 수정 불가
+
+// obj 속성 안에도 '?' 사용 가능
+type Boyfriend = {
+  name?: string;
+};
+const 남자친구: Boyfriend = {
+  name: "손석구",
+};
+남자친구.name = "차니니";
+
+// type 합치기 (1)
+type Name = string;
+type Age = number;
+type Person = Name | Age;
+
+// type 합치기 (2) -- obj extend
+type PositionX = { x: number };
+type PositionY = { y: number };
+// { x: number, y: number } // 합치고 싶을 때
+type NewType = PositionX & PositionY;
+let position: NewType = { x: 10, y: 20 };
+
+// 같은 이름의 type 변수는 재정의 불가능 -- 엄격함
+
+// 숙제
+type Homework = {
+  color?: string;
+  size: number;
+  readonly position: number[];
+};
+const 숙제: Homework = {
+  size: 123,
+  position: [1, 2, 3],
+};
+
+type 정보 = {
+  name: string;
+  phone: number;
+  email?: string;
+};
+const info: 정보 = { name: "kim", phone: 123, email: "abc@naver.com" };
+type 어른 = {
+  adult: boolean;
+};
+type NewUser = 정보 & 어른;
+const 회원가입정보: NewUser = {
+  name: "kim",
+  adult: false,
+  phone: 1234,
+};
