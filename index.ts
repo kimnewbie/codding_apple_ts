@@ -1,29 +1,69 @@
-// Literal Types
-let 이름: "kim"; // kim만 들어올 수 있음
+// 함수 전체를 alias로 지정
+type 함수타입 = (a: string) => number;
+// === function 함수(a: string): number {
+//   return 123;
+// }
 
-let 접니다: "대머리" | "솔로";
-접니다 = "솔로";
-접니다 = "대머리";
+let 함수: 함수타입 = function (a) {
+  return 10;
+};
 
-// 함수에도 사용 가능
-function 함수(a: "hello"): 1 | 0 {
-  return 1;
-}
-
-function 실습(a: "가위" | "바위" | "보"): ("가위" | "바위" | "보")[] {
-  return ["가위"];
-}
-실습("가위");
-
-//
-var 자료 = {
+type Member = {
+  name: string;
+  age?: number;
+  plusOne: (a: number) => number;
+  changeName?: () => void;
+};
+let 회원정보: Member = {
   name: "kim",
-} as const;
-// as const = 효과1. obj value 값을 그대로 타입으로 지정
-// as const = 효과2. obj 속성들에 모두 readonly 붙여줌
-console.log(자료.name); // node index.js 로 콘솔에 침
-// kim이라는 자료만 들어올 수 있습니다 X
-// kim이라는 타입만 들어올 수 있습니다 o
-function 내함수(a: "kim") {}
-내함수("kim");
-내함수(자료.name); // --error
+  plusOne(a) {
+    return a + 1;
+  },
+  changeName: () => {},
+};
+회원정보.plusOne(123);
+
+// callback function
+// 함수 안에 함수는 callback 함수
+function 함수1(a) {
+  a();
+}
+function 함수2() {}
+함수1(함수2);
+
+// 숙제
+type CutType = (x: string) => string;
+// function cutZero(a: string): string { -- 내 답
+//   if (a[0] === "0") return a.substring(1);
+//   else return a;
+// }
+let cutZero: CutType = function (x) {
+  let result = x.replace(/^0+/, "");
+  return result;
+};
+function removeDash(a: string): number {
+  const convert = a.replace(/\-/g, "");
+  // return Number(convert); // or
+  return parseFloat(convert);
+}
+type RemoveType = (a: string) => number;
+let removeDash2: RemoveType = function (a) {
+  return parseFloat(a);
+};
+console.log(cutZero("0룰루"));
+console.log(removeDash("110-1234-5678"));
+
+// 내꺼 틀린 답
+// type 숙제타입 = {
+//   첫째: string;
+//   둘째: (a: string) => number;
+//   셋째: (a: string) => number;
+// };
+type 함수타입1 = (a: string) => string;
+type 함수타입2 = (a: string) => number;
+function 만들함수(a: string, b: 함수타입1, c: 함수타입2) {
+  let result = b(a);
+  let result2 = c(result);
+  return console.log(result2);
+}
+만들함수("010-1111-2222", cutZero, removeDash);

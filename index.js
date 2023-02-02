@@ -1,26 +1,46 @@
-// Literal Types
-var 이름; // kim만 들어올 수 있음
-var 접니다;
-접니다 = "솔로";
-접니다 = "대머리";
-// 함수에도 사용 가능
-function 함수(a) {
-    return 1;
-}
-function 실습(a) {
-    return ["가위"];
-}
-실습("가위");
-//
-var 자료 = {
-    name: "kim",
+// === function 함수(a: string): number {
+//   return 123;
+// }
+var 함수 = function (a) {
+    return 10;
 };
-// as const = 효과1. obj value 값을 그대로 타입으로 지정
-// as const = 효과2. obj 속성들에 모두 readonly 붙여줌
-console.log(자료.name); // node index.js 로 콘솔에 침
-// kim이라는 자료만 들어올 수 있습니다 X
-// kim이라는 타입만 들어올 수 있습니다 o
-function 내함수(a) { }
-내함수("kim");
-내함수(자료.name); // --error
+var 회원정보 = {
+    name: "kim",
+    plusOne: function (a) {
+        return a + 1;
+    },
+    changeName: function () { },
+};
+회원정보.plusOne(123);
+// callback function
+// 함수 안에 함수는 callback 함수
+function 함수1(a) {
+    a();
+}
+function 함수2() { }
+함수1(함수2);
+// function cutZero(a: string): string { -- 내 답
+//   if (a[0] === "0") return a.substring(1);
+//   else return a;
+// }
+var cutZero = function (x) {
+    var result = x.replace(/^0+/, "");
+    return result;
+};
+function removeDash(a) {
+    var convert = a.replace(/\-/g, "");
+    // return Number(convert); // or
+    return parseFloat(convert);
+}
+var removeDash2 = function (a) {
+    return parseFloat(a);
+};
+console.log(cutZero("0룰루"));
+console.log(removeDash("110-1234-5678"));
+function 만들함수(a, b, c) {
+    var result = b(a);
+    var result2 = c(result);
+    return console.log(result2);
+}
+만들함수("010-1111-2222", cutZero, removeDash);
 //# sourceMappingURL=index.js.map
