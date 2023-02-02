@@ -1,73 +1,29 @@
-type Animal = string | number | undefined; // (union type => type alias/타입 변수)
+// Literal Types
+let 이름: "kim"; // kim만 들어올 수 있음
 
-let 동물: Animal = "kim";
+let 접니다: "대머리" | "솔로";
+접니다 = "솔로";
+접니다 = "대머리";
 
-type List = { name: string; age: number };
-let 리스트: List = { name: "kim", age: 20 };
+// 함수에도 사용 가능
+function 함수(a: "hello"): 1 | 0 {
+  return 1;
+}
 
-// 작명 tip : 첫 시작은 대문자 혹은 Type을 변수명 뒤에 붙인다
+function 실습(a: "가위" | "바위" | "보"): ("가위" | "바위" | "보")[] {
+  return ["가위"];
+}
+실습("가위");
 
-const 출생지역 = "seoul";
-// 출생지역 = 'busan'; // const 변수는 바뀌지 않음
-
-const 지역 = { region: "seoul" }; // object는 수정 가능
-지역.region = "busan";
-
-// typescript에서 lock 가능(but 이렇게 해도 js에서는 실행 가능)
-type Girlfriend = {
-  readonly name: string;
-};
-const 여친: Girlfriend = {
-  name: "엠버",
-};
-// 여친.name = "유진"; // readonly를 사용하면 수정 불가
-
-// obj 속성 안에도 '?' 사용 가능
-type Boyfriend = {
-  name?: string;
-};
-const 남자친구: Boyfriend = {
-  name: "손석구",
-};
-남자친구.name = "차니니";
-
-// type 합치기 (1)
-type Name = string;
-type Age = number;
-type Person = Name | Age;
-
-// type 합치기 (2) -- obj extend
-type PositionX = { x: number };
-type PositionY = { y: number };
-// { x: number, y: number } // 합치고 싶을 때
-type NewType = PositionX & PositionY;
-let position: NewType = { x: 10, y: 20 };
-
-// 같은 이름의 type 변수는 재정의 불가능 -- 엄격함
-
-// 숙제
-type Homework = {
-  color?: string;
-  size: number;
-  readonly position: number[];
-};
-const 숙제: Homework = {
-  size: 123,
-  position: [1, 2, 3],
-};
-
-type 정보 = {
-  name: string;
-  phone: number;
-  email?: string;
-};
-const info: 정보 = { name: "kim", phone: 123, email: "abc@naver.com" };
-type 어른 = {
-  adult: boolean;
-};
-type NewUser = 정보 & 어른;
-const 회원가입정보: NewUser = {
+//
+var 자료 = {
   name: "kim",
-  adult: false,
-  phone: 1234,
-};
+} as const;
+// as const = 효과1. obj value 값을 그대로 타입으로 지정
+// as const = 효과2. obj 속성들에 모두 readonly 붙여줌
+console.log(자료.name); // node index.js 로 콘솔에 침
+// kim이라는 자료만 들어올 수 있습니다 X
+// kim이라는 타입만 들어올 수 있습니다 o
+function 내함수(a: "kim") {}
+내함수("kim");
+내함수(자료.name); // --error

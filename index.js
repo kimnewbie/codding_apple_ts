@@ -1,26 +1,26 @@
-var 동물 = "kim";
-var 리스트 = { name: "kim", age: 20 };
-// 작명 tip : 첫 시작은 대문자 혹은 Type을 변수명 뒤에 붙인다
-var 출생지역 = "seoul";
-// 출생지역 = 'busan'; // const 변수는 바뀌지 않음
-var 지역 = { region: "seoul" }; // object는 수정 가능
-지역.region = "busan";
-var 여친 = {
-    name: "엠버",
-};
-var 남자친구 = {
-    name: "손석구",
-};
-남자친구.name = "차니니";
-var position = { x: 10, y: 20 };
-var 숙제 = {
-    size: 123,
-    position: [1, 2, 3],
-};
-var info = { name: "kim", phone: 123, email: "abc@naver.com" };
-var 회원가입정보 = {
+// Literal Types
+var 이름; // kim만 들어올 수 있음
+var 접니다;
+접니다 = "솔로";
+접니다 = "대머리";
+// 함수에도 사용 가능
+function 함수(a) {
+    return 1;
+}
+function 실습(a) {
+    return ["가위"];
+}
+실습("가위");
+//
+var 자료 = {
     name: "kim",
-    adult: false,
-    phone: 1234,
 };
+// as const = 효과1. obj value 값을 그대로 타입으로 지정
+// as const = 효과2. obj 속성들에 모두 readonly 붙여줌
+console.log(자료.name); // node index.js 로 콘솔에 침
+// kim이라는 자료만 들어올 수 있습니다 X
+// kim이라는 타입만 들어올 수 있습니다 o
+function 내함수(a) { }
+내함수("kim");
+내함수(자료.name); // --error
 //# sourceMappingURL=index.js.map
