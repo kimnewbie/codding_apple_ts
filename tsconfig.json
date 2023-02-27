@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "commonjs",
     "noImplicitAny": true,
-    "strictNullChecks": true,
+    "strictNullChecks": true, // or "strict" => null 타입 확인
     "sourceMap": true
   },
   "include": ["index.ts"],

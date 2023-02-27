@@ -1,46 +1,45 @@
-// === function 함수(a: string): number {
-//   return 123;
-// }
-var 함수 = function (a) {
-    return 10;
-};
-var 회원정보 = {
-    name: "kim",
-    plusOne: function (a) {
-        return a + 1;
-    },
-    changeName: function () { },
-};
-회원정보.plusOne(123);
-// callback function
-// 함수 안에 함수는 callback 함수
-function 함수1(a) {
-    a();
+var 제목 = document.querySelector("#title");
+//1.  if (제목 !== null) 제목.innerHTML = "반가워요"; // narrowing(union type)
+/* 2. instanceof 연산자를 많이 사용할 예정 제목이 Element의 자식이니? */
+// [instanceof] if (제목 instanceof Element) 제목.innerHTML = "반가워요";
+/* 3. 자주 쓰지 않는 게 좋아, 확실할 때 사용하는 게 좋음 */
+// [as로 사기 치기] let 제목2 = document.querySelector("#title") as Element;
+// 제목2.innerHTML = "반가워요";
+/* 4. 오브젝트에 붙이는 ? 물음표 */
+if ((제목 === null || 제목 === void 0 ? void 0 : 제목.innerHTML) != undefined) {
+    제목.innerHTML = "반가워요";
 }
-function 함수2() { }
-함수1(함수2);
-// function cutZero(a: string): string { -- 내 답
-//   if (a[0] === "0") return a.substring(1);
-//   else return a;
-// }
-var cutZero = function (x) {
-    var result = x.replace(/^0+/, "");
-    return result;
-};
-function removeDash(a) {
-    var convert = a.replace(/\-/g, "");
-    // return Number(convert); // or
-    return parseFloat(convert);
+var 링크 = document.querySelector(".link");
+/* 링크 주소를 naver.com 에서 kakao.com 으로 변경 */
+// [error] if(링크 instanceof Element)
+// 상세한 타입으로 해줘야해 [Element] => [HTMLAnchorElement]
+// cf. [HTMLHeadingElement], [HTMLButtonElement]
+if (링크 instanceof HTMLAnchorElement) {
+    링크.href = "https://kakao.com";
 }
-var removeDash2 = function (a) {
-    return parseFloat(a);
-};
-console.log(cutZero("0룰루"));
-console.log(removeDash("110-1234-5678"));
-function 만들함수(a, b, c) {
-    var result = b(a);
-    var result2 = c(result);
-    return console.log(result2);
+var 버튼 = document.querySelector("#button");
+버튼 === null || 버튼 === void 0 ? void 0 : 버튼.addEventListener("click", function () {
+    // [?.] narrow요소로 인정
+});
+// (숙제1) 버튼을 누르면 이미지를 바꿔봅시다.
+var 이미지 = document.querySelector("#image");
+if (이미지 instanceof HTMLImageElement) {
+    이미지.src = "change.jpg";
 }
-만들함수("010-1111-2222", cutZero, removeDash);
+// (숙제2) 바꾸고 싶은 html 요소가 많습니다.
+var 변경할링크 = document.querySelectorAll(".naver");
+변경할링크.forEach(function (element) {
+    if (element instanceof HTMLAnchorElement) {
+        element.href = "https://kakao.com";
+    }
+});
+for (var i = 0; i < 3; i++) {
+    var a = 변경할링크[i];
+    if (a instanceof HTMLAnchorElement) {
+        a.href = "https://kakao.com";
+    }
+}
+// querySelectorAll() 셀렉터를 쓰면 많은 요소를 한번에 찾을 수 있습니다.
+// 근데 이 경우 타입이 NodeListOf<어쩌구> 이렇게 나오는데 그냥 여러개 찾으면 이런 타입이 된다고 생각하면 됩니다.
+// 그리고 forEach 반복문을 이용해서 찾은 요소마다 각각 href 속성을 변경해줬다고 합니다.
 //# sourceMappingURL=index.js.map
